@@ -1,70 +1,65 @@
-from fastapi import FastAPI,Depends
 from fastapi_login import LoginManager
-from fastapi.security import OAuth2PasswordRequestForm
-from fastapi_login.exceptions import InvalidCredentialsException
-from starlette.responses import RedirectResponse
+from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from typing import Optional
 from pydantic import BaseModel
-
+from sqlalchemy import MetaData, Column, BigInteger, Integer, VARCHAR,TEXT
+from sqlalchemy.orm import declarative_base
+import db_conn
 import uvicorn
 
-app = FastAPI()
-SECRET = '2c01b7facd47e87237b6160b40c255a2b51cdafd0aa98814'
-manager = LoginManager(SECRET, token_url='/auth/token')
-fake_db = {'johndoe@e.mail': {'password': 'hunter2'}}
 
+app = FastAPI()
+
+Base = declarative_base()
+metadata = MetaData()
+engine = db_conn.engineconn()
+
+session = engine.sessionmaker()
+connect = engine.connection()
 
 # ----------------------- Class  -----------------------
 
-class NotAuthenticatedException(Exception):
-    pass
-
+#Body 값
 class Item(BaseModel):
     user_amount : str
     user_memo: str
+    user_del : str
+    memo_del : str
+    memo_id : int
 
+class Register(Base):
 
+    __tablename__ = 'register_form'
+    user_id = Column(Integer,nullable=False,primary_key=True)
+    user_email = Column(VARCHAR(60),nullable=True)
+    user_password = Column(TEXT,nullable=True)
+    user_del = Column(VARCHAR(10),nullable=True,default=False)
 
+    def __repr__(self):
+        return "<User(user_id='%s', user_email='%s', user_password='%s',user_del='%s')>" % \
+               (self.user_id,self.user_email, self.user_password, self.user_del)
 
+class Account(Base):
+
+    __tablename__ = 'account_memo'
+    user_id = Column(Integer,nullable=False,primary_key=True)
+    user_amount = Column(TEXT,nullable=True)
+    user_memo = Column(TEXT,nullable=True)
+    user_del = Column(VARCHAR(2),nullable=True)
+    memo_del = Column(VARCHAR(2), nullable=True)
+    memo_id = Column(Integer, autoincrement=True,nullable=True)
+
+    def __repr__(self):
+        return "<User(user_id='%s', user_amount='%s', user_memo='%s',user_del='%s',memo_del='%s',memo_id='%s')>" % \
+               (self.user_id,self.user_email, self.user_password, self.user_del, self.memo_del, self.memo_id)
 
 # ----------------------- API Method  -----------------------
 
 
-# ----------------------- Register -----------------------
+# ----------------------- Register/Login -----------------------
 # 회원가입 부분입니다.
-# ----------------------- Register -----------------------
-
-
-# ----------------------- Login -----------------------
-
-@app.post('/auth/token')
-def login(data: OAuth2PasswordRequestForm = Depends()):
-    email = data.username
-    password = data.password
-
-    user = load_user(email)  # we are using the same function to retrieve the user
-    if not user:
-        raise InvalidCredentialsException  # you can also use your own HTTPException
-    elif password != user['password']:
-        raise InvalidCredentialsException
-
-    access_token = manager.create_access_token(
-        data=dict(sub=email)
-    )
-    return {'access_token': access_token, 'token_type': 'bearer'}
-
-def exc_handler(request, exc):
-    return RedirectResponse(url='/login')
-
-@manager.user_loader()
-def load_user(email: str):  # could also be an asynchronous function
-    user = fake_db.get(email)
-    return user
-manager.not_authenticated_exception = NotAuthenticatedException
-# You also have to add an exception handler to your app instance
-app.add_exception_handler(NotAuthenticatedException, exc_handler)
-
-# ----------------------- Login -----------------------
-
+# ----------------------- Register/Login -----------------------
 
 # ----------------------- Request -----------------------
 
@@ -79,8 +74,11 @@ async def get_account():
     return
 
 @app.post("/accountmemo")
-async def post_account():
-
+async def post_account(item : Item):
+    # 임시 데이터 넣기
+    addMemo = Account(user_id = 1 ,user_amount = item.user_amount,user_memo = item.user_memo, user_del = item.user_del, memo_del = item.memo_del, memo_id =item.memo_id)
+    session.add(addMemo)
+    session.commit()
     return
 
 @app.put("/accountmemo")

@@ -1,4 +1,4 @@
-Env = 'testsqlal'
+Env = 'test'
 
 if Env == 'live':
 
@@ -14,9 +14,9 @@ elif Env == 'test' :
 
     app = {
         'name': 'mysql+pymysql',
-        'user': '----',
-        'password': '----',
+        'user': 'root',
+        'password': '1234',
         'host': '127.0.0.1',
-        'db': 'Account',
-        'port': ''
+        'db': 'request',
+        'port': '3306'
     }
