@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d43162e7-f5d5-49b4-b0b0-59382590a9b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_conn.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_conn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regi.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/rest_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/rest_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +32,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../name/JobBoard-Fastapi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JobBoard-Fastapi" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
@@ -46,7 +49,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rest_api.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\SPEX\Desktop\Python\Account\rest_api.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -71,5 +74,17 @@
       <updated>1636797037362</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
