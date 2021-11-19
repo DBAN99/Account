@@ -1,10 +1,21 @@
 # 나만의 가계부 만들기
 
-로컬호스트에서 실행하도록 제작 (localhost = 127.0.0.1)<br>
-mySQL을 이용한 DB 구축<br>
-fastAPI를 이용한 서버 구축<br>
-<br><br>
-실행법 <br>
+**로컬호스트에서 실행하도록 제작 (localhost = 127.0.0.1)**<br>
+**mySQL을 이용한 DB 구축**<br>
+**fastAPI를 이용한 서버 구축**<br>
+**도커파일이 빌드 시 안될 경우 mysql 설치 후 빌드 할 것**<br>
+**Insomnia를 이용해서 API를 호출 시킴 (insomnia.json 참조)**<br>
+<br>
+
+**실행법** <br>
+
+```
+git clone https://github.com/DBAN99/Account.git
+cd .\Account\
+pip install -r .\requirements.txt
+uvicorn main:app --reload     #start server
+visit  127.0.0.1:8000/
+```
 
 <br>
 <br>
@@ -108,7 +119,6 @@ crud 부분을 호출 할 때 매번 유저 테이블을 select하는 상황이 
 진행을 하면서 JWT에 대한 개념을 파악할 수 있었고 토큰을 활용하면서 데이터를 어떻게 더 안전하게 보관 할 수 있을지 생각하게됨<br>
 
 ### CRUD
-<br>
 **RESTAPI Method**<br>
 REST API Method 규격(GET,POST,PATCH,DELETE)에 벗어나지 않도록 진행<br> 
 프로젝트를 진행하면서 GET으로만 API를 구현하던 내게 다양한 메소드를 사용해보는 기회가 됨<br>
@@ -124,7 +134,7 @@ REST API Method 규격(GET,POST,PATCH,DELETE)에 벗어나지 않도록 진행<b
 ### DB 테이블 register_form, account_memo
 
 <br><br>
-[Untitled.pdf](https://github.com/DBAN99/Account/files/7570094/Untitled.pdf)
+![Untitled (1)](https://user-images.githubusercontent.com/52847151/142620359-c4fdb455-d9ac-4bfc-8e15-c6d665516491.png)
 
 <br><br>
 create table account_memo <br>
@@ -157,5 +167,3 @@ create table register_form<br>
 );<br>
 
  ![1234](https://user-images.githubusercontent.com/52847151/142620039-cd31e829-29d8-4569-9294-c247d2f4e53a.png)
-
-
