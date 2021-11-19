@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d43162e7-f5d5-49b4-b0b0-59382590a9b7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Payhere.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Payhere.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_login_register.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/api_login_register.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_router/api_router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbconn/db_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_conn.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbconn/db_conn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/api_account.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mk_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/mk_package/mk_token.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/api_account.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbconn/sql_auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JobBoard-Fastapi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -60,6 +53,9 @@
       <updated>1636797037362</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="Dockerfile" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

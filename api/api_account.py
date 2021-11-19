@@ -43,7 +43,7 @@ async def get_account(Authorization : str = Header(None)):
 
 # 특정 가계부 조회 (삭제되지 않은 것)
 @router.get("/accountmemo/{id}",tags=["crud"])
-async def patch_account(id : int ,Authorization : str = Header(None)):
+async def get_account_id(id : int ,Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
         result = '토큰 값이 만료되었습니다.'
@@ -75,7 +75,7 @@ async def post_account(item: Item,Authorization : str = Header(None)):
 
 # 데이터 수정
 @router.patch("/accountmemo/{id}",tags=["crud"])
-async def patch_account(id : int,edit : Edit,Authorization : str = Header(None)):
+async def patch_account_id(id : int,edit : Edit,Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
         result = '토큰 값이 만료되었습니다.'
@@ -89,7 +89,7 @@ async def patch_account(id : int,edit : Edit,Authorization : str = Header(None))
 
 # 해당 memo_id를 가진 데이터 삭제
 @router.delete("/accountmemo/{id}",tags=["crud"])
-async def patch_account(id : int,delete : Delete,Authorization : str = Header(None)):
+async def del_account_id(id : int,delete : Delete,Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
         result = '토큰 값이 만료되었습니다.'
@@ -103,7 +103,7 @@ async def patch_account(id : int,delete : Delete,Authorization : str = Header(No
 
 # 해당 memo_id를 가진 데이터 복구
 @router.post("/accountmemo/{id}",tags=["crud"])
-async def patch_account(id : int,delete : Delete,Authorization : str = Header(None)):
+async def post_account_id(id : int,delete : Delete,Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
         result = '토큰 값이 만료되었습니다.'
