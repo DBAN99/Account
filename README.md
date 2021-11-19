@@ -24,12 +24,12 @@ visit  127.0.0.1:8000/
 ### 회원가입
 #### POST 127.0.0.1/login/register
 body에 아래와 같은 형식으로 API에 요청하면 DB에 저장된다.
-
-{ <br>
-  "user_email": "user@example.com",<br>
-  "user_password": "string"<br>
+```
+{ 
+  "user_email": "user@example.com",
+  "user_password": "string"
 }
-
+```
 <br>
 <br>
 
@@ -37,11 +37,12 @@ body에 아래와 같은 형식으로 API에 요청하면 DB에 저장된다.
 #### POST 127.0.0.1/login/login
 body에 아래와 같은 형식으로 API에 요청하면 jwt 토큰이 발급된다.<br>
 발급된 토큰을 가지고 Header에 (**Authorization : JWT 토큰**) 형식으로 요청해야지만 CRUD기능을 이용할 수 있다. <br><br>
-{<br>
-  "login_email": "user@example.com",<br>
-  "login_password": "string"<br>
-}<br>
-
+```
+{
+  "login_email": "user@example.com",
+  "login_password": "string"
+}
+```
 <br>
 <br>
 
@@ -64,45 +65,61 @@ body에 아래와 같은 형식으로 API에 요청하면 jwt 토큰이 발급�
 ### 메모 작성
 #### POST 127.0.0.1/crud/accountmemo
 body에 아래와 같은 형식으로 API에 요청하면 DB에 내용이 저장됨 <br>
-{<br>
-  "user_amount": "string",<br>
-  "user_memo": "string"<br>
+```
+{
+  "user_amount": "string",
+  "user_memo": "string"
 }
+```
 <br><br>
 
 ### 특정 메모 수정
 #### PATCH 127.0.0.1/crud/accountmemo/{id}
 body에 아래와 같은 형식으로 API에 요청하면 id값에 일치한 메모 내용을 body에 있는 내용으로 수정됨<br>
-
-{<br>
-  "user_amount": "string",<br>
-  "user_memo": "string"<br>
+```
+{
+  "user_amount": "string",
+  "user_memo": "string"
 }
+```
 <br><br>
 
 ### 특정 메모 삭제
 #### DELETE 127.0.0.1/crud/accountmemo/{id}
 body에 아래와 같은 형식으로 API에 요청하면 id값에 일치한 메모를 삭제한다.<br>
-
-{<br>
-  "memo_del": true<br>
-}<br>
-
+```
+{
+  "memo_del": true
+}
+```
 <br><br>
 
 ### 특정 메모 복구
 #### POST 127.0.0.1/crud/accountmemo/{id}
 body에 아래와 같은 형식으로 API에 요청하면 id값에 일치한 메모를 한다.<br>
-{<br>
-  "memo_del": true<br>
-}<br>
-
+```
+{
+  "memo_del": false
+}
+```
 <br><br>
 
 # 왜 이렇게 구현을 했는가?
 
-<br>
+<br> <br>
 
+### API Router 
+<br>
+한 곳에 모든 API를 집어넣어 개발하는 것이 아닌 FastAPI에 존재하는 API Router 기능을 이용하여 모듈화 시킴<br>
+API Router는 Flask의 블루 프린트와 동일한 기능을 가지고 있음 따라서 프로젝트를 구조적으로 관리가 가능해짐<br>
+
+<br>
+**폴더 설명**<br>
+api => RESTAPI 실행 <br>
+api_router => 라우터 맵핑 <br>
+dbconn => DB 연결,클래스 <br>
+mk_package => 기능 구현 <br>
+<br>
 ### 회원가입/로그인
 
 **회원가입**<br>
