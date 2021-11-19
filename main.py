@@ -1,12 +1,10 @@
-import api_login_register
+from api import api_login_register, api_account
 from fastapi import FastAPI
-
-import rest_api
 
 
 def include_router(app):
     app.include_router(api_login_register.router, prefix="/login")
-    app.include_router(rest_api.router, prefix="/crud")
+    app.include_router(api_account.router, prefix="/crud")
 
 
 def start_application():

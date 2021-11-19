@@ -1,14 +1,9 @@
-from datetime import timedelta, datetime
-
-from fastapi import Header, FastAPI,APIRouter
-from pydantic import BaseModel, EmailStr
+from fastapi import Header, APIRouter
+from pydantic import BaseModel
 from sqlalchemy import MetaData
+from dbconn import db_conn, db_class as db
+from mk_package import mk_token
 
-import mk_token
-
-import db_class as db
-import db_conn
-import uvicorn
 
 router = APIRouter()
 metadata = MetaData()
@@ -34,7 +29,7 @@ class Id(BaseModel):
 
 
 # ----------------------- Request -----------------------
-
+# 전체 리스트 조회(삭제되지 않은 것)
 @router.get("/accountmemo" ,tags=["crud"])
 async def get_account(Authorization : str = Header(None)):
 
@@ -46,10 +41,26 @@ async def get_account(Authorization : str = Header(None)):
 
     return result
 
+# 특정 가계부 조회 (삭제되지 않은 것)
+@router.get("/accountmemo/{id}",tags=["crud"])
+async def patch_account(id : int ,Authorization : str = Header(None)):
+
+    if mk_token.decode_token(Authorization) == 0:
+        result = '토큰 값이 만료되었습니다.'
+
+    else:
+        result = session.query(db.Account).filter(db.Account.memo_id == id, db.Account.memo_del == 0 ).all()
+
+        if result == []:
+            result = '삭제된 가계부입니다.'
+
+    return result
+
+# 데이터 입력
 @router.post("/accountmemo",tags=["crud"])
 async def post_account(item: Item,Authorization : str = Header(None)):
 
-    check_token = mk_token.decode_token(Authorization )
+    check_token = mk_token.decode_token(Authorization)
     if check_token == 0:
         result = '토큰 값이 만료되었습니다.'
 
@@ -62,6 +73,7 @@ async def post_account(item: Item,Authorization : str = Header(None)):
 
     return result
 
+# 데이터 수정
 @router.patch("/accountmemo/{id}",tags=["crud"])
 async def patch_account(id : int,edit : Edit,Authorization : str = Header(None)):
 
@@ -71,10 +83,11 @@ async def patch_account(id : int,edit : Edit,Authorization : str = Header(None))
     else:
         session.query(db.Account).filter(db.Account.memo_id == id).update(dict(user_memo =edit.user_memo,user_amount=edit.user_amount))
         session.commit()
-        result = '수정완료'
+        result = '수정 완료'
 
     return result
 
+# 해당 memo_id를 가진 데이터 삭제
 @router.delete("/accountmemo/{id}",tags=["crud"])
 async def patch_account(id : int,delete : Delete,Authorization : str = Header(None)):
 
@@ -88,6 +101,7 @@ async def patch_account(id : int,delete : Delete,Authorization : str = Header(No
 
     return result
 
+# 해당 memo_id를 가진 데이터 복구
 @router.post("/accountmemo/{id}",tags=["crud"])
 async def patch_account(id : int,delete : Delete,Authorization : str = Header(None)):
 
@@ -101,8 +115,5 @@ async def patch_account(id : int,delete : Delete,Authorization : str = Header(No
 
     return result
 
+
 # ----------------------- Request -----------------------
-
-
-if __name__ == '__main__':
-    uvicorn.run(router)

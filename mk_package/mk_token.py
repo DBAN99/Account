@@ -1,6 +1,5 @@
 import jwt
-import db_conn
-import db_class as db
+from dbconn import db_conn, db_class as db
 
 engine = db_conn.engineconn()
 session = engine.sessionmaker()

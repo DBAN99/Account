@@ -7,7 +7,7 @@ if Env == 'live':
         'user' : '----',
         'password': '----',
         'host': '0.0.0.0',
-        'db': 'Account',
+        'dbconn': 'Account',
         'port': ''
     }
 elif Env == 'test' :
@@ -17,6 +17,6 @@ elif Env == 'test' :
         'user': 'root',
         'password': '1234',
         'host': '127.0.0.1',
-        'db': 'request',
+        'dbconn': 'request',
         'port': '3306'
     }
