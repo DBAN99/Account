@@ -3,7 +3,6 @@
 **로컬호스트에서 실행하도록 제작 (localhost = 127.0.0.1)**<br>
 **mySQL을 이용한 DB 구축**<br>
 **fastAPI를 이용한 서버 구축**<br>
-**도커파일이 빌드 시 안될 경우 mysql 설치 후 빌드 할 것**<br>
 **Insomnia를 이용해서 API를 호출 시킴 (insomnia.json 참조)**<br>
 <br>
 
@@ -120,6 +119,7 @@ api_router => 라우터 맵핑 <br>
 dbconn => DB 연결,클래스 <br>
 mk_package => 기능 구현 <br>
 <br>
+
 ### 회원가입/로그인
 
 **회원가입**<br>
