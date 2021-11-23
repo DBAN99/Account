@@ -17,4 +17,8 @@
 #
 # ENTRYPOINT ["uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"]
 #
+<<<<<<< HEAD
 # EXPOSE 8000
+=======
+# EXPOSE 8000
+>>>>>>> aa7d9cb7cc5c01cba7247b013d34d4974e13ff4b
