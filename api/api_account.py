@@ -1,4 +1,4 @@
-from fastapi import Header, APIRouter
+from fastapi import Header, APIRouter, HTTPException
 from pydantic import BaseModel
 from sqlalchemy import MetaData
 from dbconn import db_conn, db_class as db
@@ -34,7 +34,7 @@ class Id(BaseModel):
 async def get_account(Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
-        result = '토큰 값이 만료되었습니다.'
+        raise HTTPException(status_code=404, detail="Token not found")
 
     else:
         result = session.query(db.Account.user_amount, db.Account.user_memo).filter(db.Account.memo_del == 0).all()

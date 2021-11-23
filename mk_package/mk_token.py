@@ -1,10 +1,11 @@
 import jwt
 from dbconn import db_conn, db_class as db
+import security
 
 engine = db_conn.engineconn()
 session = engine.sessionmaker()
 
-SECRET_KEY = 'bac1a159a966fd9292eaf4cb1e7f8c64217986a183100ad6eec571aecbbd48f9'
+SECRET_KEY = security.auth('secret')
 
 def create_token(token: dict):
     token = jwt.encode(token, SECRET_KEY, algorithm='HS256')
@@ -19,6 +20,6 @@ def decode_token(Authorization: str):
         result = 0
 
     else:
-        result = session.query(db.Register).filter(db.Register.user_email == de_token['email'],db.Register.user_password == de_token['password']).all()
+        result = session.query(db.Register).filter(db.Register.user_email == de_token['email']).all()
 
     return result
