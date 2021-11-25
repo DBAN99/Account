@@ -5,7 +5,7 @@ import security
 engine = db_conn.engineconn()
 session = engine.sessionmaker()
 
-SECRET_KEY = security.auth('secret')
+SECRET_KEY = security.auth['secret']
 
 def create_token(token: dict):
     token = jwt.encode(token, SECRET_KEY, algorithm='HS256')

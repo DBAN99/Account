@@ -46,13 +46,13 @@ async def get_account(Authorization : str = Header(None)):
 async def get_account_id(id : int ,Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
-        result = '토큰 값이 만료되었습니다.'
+        raise HTTPException(status_code=404, detail="Token not found")
 
     else:
         result = session.query(db.Account).filter(db.Account.memo_id == id, db.Account.memo_del == 0 ).all()
 
         if result == []:
-            result = '삭제된 가계부입니다.'
+            raise HTTPException(status_code=404, detail="Token not found")
 
     return result
 
@@ -62,14 +62,14 @@ async def post_account(item: Item,Authorization : str = Header(None)):
 
     check_token = mk_token.decode_token(Authorization)
     if check_token == 0:
-        result = '토큰 값이 만료되었습니다.'
+        raise HTTPException(status_code=404, detail="Token not found")
 
     else:
         user_id = check_token[0].user_id
         addMemo = db.Account(owner_id=user_id, user_amount=item.user_amount, user_memo=item.user_memo)
         session.add(addMemo)
         session.commit()
-        result = '작성 완료'
+        result = HTTPException(status_code=200, detail="Create Complete")
 
     return result
 
@@ -78,12 +78,12 @@ async def post_account(item: Item,Authorization : str = Header(None)):
 async def patch_account_id(id : int,edit : Edit,Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
-        result = '토큰 값이 만료되었습니다.'
+        raise HTTPException(status_code=404, detail="Token not found")
 
     else:
         session.query(db.Account).filter(db.Account.memo_id == id).update(dict(user_memo =edit.user_memo,user_amount=edit.user_amount))
         session.commit()
-        result = '수정 완료'
+        result = HTTPException(status_code=200, detail="Edit Complete")
 
     return result
 
@@ -92,12 +92,12 @@ async def patch_account_id(id : int,edit : Edit,Authorization : str = Header(Non
 async def del_account_id(id : int,delete : Delete,Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
-        result = '토큰 값이 만료되었습니다.'
+        raise HTTPException(status_code=404, detail="Token not found")
 
     else:
         session.query(db.Account).filter(db.Account.memo_id == id).update(dict(memo_del=delete.memo_del))
         session.commit()
-        result = '삭제완료'
+        result = HTTPException(status_code=200, detail="Delete Complete")
 
     return result
 
@@ -106,12 +106,12 @@ async def del_account_id(id : int,delete : Delete,Authorization : str = Header(N
 async def post_account_id(id : int,delete : Delete,Authorization : str = Header(None)):
 
     if mk_token.decode_token(Authorization) == 0:
-        result = '토큰 값이 만료되었습니다.'
+        raise HTTPException(status_code=404, detail="Token not found")
 
     else:
         session.query(db.Account).filter(db.Account.memo_id == id).update(dict(memo_del=delete.memo_del))
         session.commit()
-        result = '복구완료'
+        result = HTTPException(status_code=200, detail="Recover Complete")
 
     return result
 
